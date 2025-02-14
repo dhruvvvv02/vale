@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: pink;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: red;
+        }
+        .gif-container {
+            margin-bottom: 20px;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .yes {
+            background-color: #ff4d4d;
+            color: white;
+            font-size: 1.5rem;
+        }
+        .no {
+            background-color: #ffffff;
+            color: red;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="gif-container">
+        <img id="valentineGif" src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWJhM2pxb24wZ2I0bXk1NjlsMzQ1ZXpnc2h1em5iNTFraTh0NDZvaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/PSMEZeHaicdT4Y7bwU/giphy.gif" alt="Cute Gif" width="200">
+    </div>
+    <h1>Will You Be My Valentine? 💘</h1>
+    <div class="buttons">
+        <button class="yes" onclick="showLoveMessage()">Yes</button>
+        <button class="no" onclick="shrinkNo()">No</button>
+    </div>
+
+    <script>
+        let noMessages = [
+            "No (Really???)",
+            "No (Think again! 🤨)",
+            "No (Why?? 💔)",
+            "No (Come on, say yes! 🥺)",
+            "No (Last chance! 😢)",
+            "No (Okay, now I’m sad...:( )"
+        ];
+        let gifLinks = [
+            "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3h6bWo2NGZpdzlua2VyNWJ3YTdqN2M3dWlrYWtobGdrcGQ2aDQyMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Y4z9olnoVl5QI/giphy.gif",
+            "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3h6bWo2NGZpdzlua2VyNWJ3YTdqN2M3dWlrYWtobGdrcGQ2aDQyMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Y4z9olnoVl5QI/giphy.gif",
+            "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3h6bWo2NGZpdzlua2VyNWJ3YTdqN2M3dWlrYWtobGdrcGQ2aDQyMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Y4z9olnoVl5QI/giphy.gif",
+            "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3h6bWo2NGZpdzlua2VyNWJ3YTdqN2M3dWlrYWtobGdrcGQ2aDQyMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Y4z9olnoVl5QI/giphy.gif"
+        ];
+        let noClickCount = 0;
+
+        function shrinkNo() {
+            const noButton = document.querySelector('.no');
+            const yesButton = document.querySelector('.yes');
+            const valentineGif = document.getElementById('valentineGif');
+            let noSize = parseFloat(window.getComputedStyle(noButton).fontSize);
+            let yesSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+            
+            if (noSize > 5) {
+                noButton.style.fontSize = (noSize - 2) + 'px';
+                yesButton.style.fontSize = (yesSize + 10) + 'px';
+                noButton.textContent = noMessages[Math.min(noClickCount, noMessages.length - 1)];
+                valentineGif.src = gifLinks[Math.min(noClickCount, gifLinks.length - 1)];
+                noClickCount++;
+            } 
+            if (noSize <= 5) {
+                noButton.style.display = 'none';
+            }
+        }
+
+        function showLoveMessage() {
+            document.body.innerHTML = `
+                <div style="text-align: center;">
+                    <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2E0NHRidWh6c2ZpZzQwbjdtMzVtMWw3MzEydDdpZDN0MGI5ZWJkeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/zGdHl3EOzwUpMqg67p/giphy.gif" alt="Happy Gif" width="300">
+                    <h1>Yay! I knew you would say yes! 💖🥰</h1>
+                </div>`;
+        }
+    </script>
+</body>
+</html>
